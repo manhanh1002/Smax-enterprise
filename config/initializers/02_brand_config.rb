@@ -28,8 +28,6 @@ Rails.application.config.after_initialize do
     next if env_val.blank?
 
     record = InstallationConfig.find_or_initialize_by(name: key)
-    next if record.locked?
-
     record.value = env_val
     record.locked = false
     record.save!
